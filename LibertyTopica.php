@@ -2,7 +2,7 @@
 /**
 * @date created 2007/04/04
 * @author Will <will@onnyturf.com>
-* @version $Revision: 1.1 $ $Date: 2007/04/10 04:58:51 $
+* @version $Revision: 1.2 $ $Date: 2007/04/11 21:17:41 $
 * @class LibertyTopica
 *
 * Copyright (c) 2007 Tekimaki LLC, Bitweaver.org
@@ -285,8 +285,10 @@ function topica_users_register( &$pObject ) {
 	if ( $gBitSystem->isPackageActive( 'topica' ) ) {		
 		$topica = new LibertyTopica( $pObject->mContentId );
 		$topica->load();
-		if ($topica->mInfo['pump']=='y'){
-			$topica->pumpTopica();
+		if ( isset($topica->mInfo['pump'])){
+			if ($topica->mInfo['pump']=='y'){
+				$topica->pumpTopica();
+			}
 		}
 	}
 }
