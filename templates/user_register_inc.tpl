@@ -2,7 +2,7 @@
 {if $gBitSystem->isPackageActive('topica')}	
 	<br/>
 	<h3>{tr}Optional Information{/tr}</h3>
-	<p>{tr}Your information will be kept confidential. Please see our Privacy Policy.{/tr}</p>
+	<p>{tr}Your information will be kept confidential. Please see our <a href="{$smarty.const.WIKI_PKG_URL}index.php?page=Privacy+Policy">Privacy Policy</a>.{/tr}</p>
 	<div class="row">
 		{formlabel label="Would You Like To Be On Our Mailing List?" for="topica"}
 		{forminput}
