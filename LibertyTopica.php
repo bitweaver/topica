@@ -2,7 +2,7 @@
 /**
 * @date created 2007/04/04
 * @author Will <will@onnyturf.com>
-* @version $Revision: 1.2 $ $Date: 2007/04/11 21:17:41 $
+* @version $Revision: 1.3 $ $Date: 2007/08/22 16:21:50 $
 * @class LibertyTopica
 *
 * Copyright (c) 2007 Tekimaki LLC, Bitweaver.org
@@ -227,13 +227,6 @@ function topica_content_store( &$pObject, &$pParamHash ) {
 	$errors = NULL;
 	// If a content access system is active, let's call it
 	if( $gBitSystem->isPackageActive( 'topica' ) ) {
-		if (isset($pParamHash['first_name']) || isset($pParamHash['last_name'])){
-			$prefs= array('prefs' => 'y', 'real_name' => ($pParamHash['first_name']?$pParamHash['first_name']." ":"").($pParamHash['last_name']?$pParamHash['last_name']:""));
-			require_once( USERS_PKG_PATH.'BitUser.php' );
-			$tempUser = new BitUser($pObject->mUserId);
-			$tempUser->load( TRUE );
-			$tempUser->store( $prefs );
-		}
 		$topica = new LibertyTopica( $pObject->mContentId );
 		if ( !$topica->store( $pParamHash ) ) {
 			$errors=$topica->mErrors;
@@ -285,6 +278,13 @@ function topica_users_register( &$pObject ) {
 	if ( $gBitSystem->isPackageActive( 'topica' ) ) {		
 		$topica = new LibertyTopica( $pObject->mContentId );
 		$topica->load();
+		if ( isset($topica->mInfo['first_name']) || isset($topica->mInfo['last_name'])){
+			$prefs= array('prefs' => 'y', 'real_name' => ($topica->mInfo['first_name']?$topica->mInfo['first_name']." ":"").($topica->mInfo['last_name']?$topica->mInfo['last_name']:""));
+			require_once( USERS_PKG_PATH.'BitUser.php' );
+			$tempUser = new BitUser($pObject->mUserId);
+			$tempUser->load( TRUE );
+			$tempUser->store( $prefs );
+		}
 		if ( isset($topica->mInfo['pump'])){
 			if ($topica->mInfo['pump']=='y'){
 				$topica->pumpTopica();
