@@ -2,7 +2,7 @@
 /**
 * @date created 2007/04/04
 * @author Will <will@onnyturf.com>
-* @version $Revision: 1.3 $ $Date: 2007/08/22 16:21:50 $
+* @version $Revision$
 * @class LibertyTopica
 *
 * Copyright (c) 2007 Tekimaki LLC, Bitweaver.org
